@@ -1762,14 +1762,24 @@
     <Content Include="content\img\cukcuk-logo.png" />
     <Content Include="content\img\default-avatar.jpg" />
     <Content Include="content\img\toggle.png" />
+    <Content Include="css\common\button.css" />
+    <Content Include="css\common\common.css" />
+    <Content Include="css\common\grid.css" />
+    <Content Include="css\common\header.css" />
+    <Content Include="css\common\icon.css" />
+    <Content Include="css\common\input.css" />
     <Content Include="css\common\layout.css" />
     <Content Include="css\common\main.css" />
+    <Content Include="css\common\menu.css" />
     <Content Include="css\pages\customer.css" />
     <Content Include="js\common\common.js" />
+    <Content Include="js\pages\customer.js" />
     <Content Include="js\pages\employee.js" />
     <Content Include="lib\jquery-3.5.1.min.js" />
     <Content Include="pages\dictionary\customer.html" />
     <Content Include="pages\dictionary\employee.html" />
+    <Content Include="pages\pages\dictionary\customer.html" />
+    <Content Include="pages\pages\dictionary\employee.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

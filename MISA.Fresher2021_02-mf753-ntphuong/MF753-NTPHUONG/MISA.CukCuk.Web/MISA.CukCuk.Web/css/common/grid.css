@@ -1,0 +1,14 @@
+﻿.grid{
+    width:100%;
+  /*height:calc(100% - 174px);*/
+}
+
+ table th, td {
+    border-bottom: 1px solid #bbbbbb;
+    text-align: left;
+    padding: 10px 16px;
+    height:40px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}

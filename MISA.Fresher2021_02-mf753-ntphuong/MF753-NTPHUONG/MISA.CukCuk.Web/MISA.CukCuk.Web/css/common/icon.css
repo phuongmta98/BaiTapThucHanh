@@ -1,0 +1,62 @@
+﻿.icon-dashboard {
+    background-image: url('../../content/icon/dashboard.png');
+}
+
+.icon-report {
+    background-image: url('../../content/icon/report.png');
+}
+
+.icon-buy {
+    background-image: url('../../content/icon/dashboard.png');
+}
+
+.icon-customer {
+    background-image: url('../../content/icon/dic-employee.png');
+}
+
+.icon-setting {
+    background-image: url('../../content/icon/setting.png');
+}
+.icon-avatar {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../content/icon/avatar-default.png');
+}
+
+
+
+.icon-option-account {
+    width: 20px;
+    height: 20px;
+    background-image: url('../../content/icon/option.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.icon-refresh {
+    background-image: url('../../content/icon/refresh.png');
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    margin: 12px;
+    background-repeat: no-repeat;
+}
+.icon-find {
+    width: 16px;
+    height: 16px;
+    margin-left: 16px;
+    margin-right: 8px;
+    background-image: url('../../content/icon/search.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.icon-add {
+    width: 16px;
+    height: 16px;
+    background-image: url('../../content/icon/add.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}

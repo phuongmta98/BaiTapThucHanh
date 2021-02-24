@@ -1,0 +1,43 @@
+﻿/* menu */
+.menu {
+    width: 100%;
+    height: calc(100% - 48px);
+}
+
+.menu-item {
+    width: 100%;
+    height: 44px;
+    align-items: center;
+    display: flex;
+}
+
+    .menu-item .menu-icon {
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 16px;
+        margin-right: 10px;
+    }
+
+
+
+.menu-item .menu-item-text {
+    font-family: 'GoogleSans-Regular';
+    font-weight: normal !important;
+}
+
+.logo-box:hover {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #e5e5e5;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'GoogleSans-Regular';
+    src: url('../../content/font/GoogleSans-Regular.otf') format('opentype');
+}

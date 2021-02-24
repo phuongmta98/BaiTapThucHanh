@@ -1,4 +1,5 @@
-﻿/**
+﻿/// <reference path="../../lib/jquery-3.5.1.min.js" />
+/**
  * chuyển ngày tháng đúng định dạng
  * @param {any} date tham số kiểu bất kì
  * CreateBy: Nguyễn Thị Phượng 

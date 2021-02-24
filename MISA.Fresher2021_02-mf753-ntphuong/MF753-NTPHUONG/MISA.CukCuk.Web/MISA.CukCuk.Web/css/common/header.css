@@ -1,0 +1,48 @@
+﻿/* header */
+.header {
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #bbbbbb;
+    line-height: 48px;
+    font-size: 15px;
+    align-items: center;
+}
+
+    .header .header-title {
+        float: left;
+        width: 160px;
+        height: 32px;
+        height: 32px;
+        margin-left: 16px;
+    }
+
+.header-title .header-title-name {
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+.header-title-name {
+    cursor: pointer;
+}
+
+.header .account {
+    float: right;
+    display: flex;
+    padding-right: 16px;
+    margin-top: 9px;
+    line-height: 30px;
+}
+
+.account .account-name {
+    width: 110px;
+    height: 30px;
+    font-size: 13px;
+    padding-left: 10px;
+    align-items: center;
+}
+
+.account:hover {
+    cursor: pointer;
+}
