@@ -1,0 +1,27 @@
+* Lệnh này clone toàn bộ project và các sub module
+ git clone --recursive git@gitlab.com.vn:android/app.git
+
+* Thêm 1 sub module
+git submodule add git@gitlab.gapo.vn:android/common.git common
+
+* check out toàn bộ
+git checkout develop && git submodule foreach --recursive git checkout develop
+
+* pull toàn bộ
+git pull origin develop && git submodule foreach --recursive git pull origin develop
+
+* tạo branch toàn bộ
+git branch canary && git submodule foreach --recursive git branch canary
+
+* git fetch và check out
+git fetch && git checkout staging
+git submodule foreach --recursive git fetch
+git submodule foreach --recursive git checkout staging
+
+* git tag toàn bộ
+git tag -a v2.7.2 -m "Hot fixes" 
+git submodule foreach git tag -a v2.7.2 -m "Hot fixes"  
+git submodule foreach git push --tag
+
+* clone toàn bộ project của 1 tổ chức
+curl -s https://api.github.com/orgs/<ORG_NAME>/repos\?per_page\=100 | jq '.[].html_url' | xargs -n 1 git clone

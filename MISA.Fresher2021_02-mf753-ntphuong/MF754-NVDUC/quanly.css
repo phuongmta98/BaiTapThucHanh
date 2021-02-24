@@ -1,0 +1,175 @@
+body {
+    font-family: 'Noto Sans', sans-serif;
+    position: relative;
+}
+
+@font-face {
+    font-family: 'Noto Sans', sans-serif;
+    src: url('Font/NotoSans-BoldItalic.ttf');
+}
+
+
+/* Navbar */
+
+.navbar {
+    float: left;
+    width: 220px;
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+}
+
+.navbar .logo-site {
+    display: flex;
+    width: 100%;
+    height: 60px;
+}
+
+.navbar .logo-box {
+    padding: 17px 0 0 24px;
+    display: flex;
+    width: 100%;
+    height: 60px;
+}
+
+.navbar .logo-site .toggle-icon {
+    width: 40px;
+    height: 20px;
+    background-image: url(Icon_image/icon_book.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.logo-site .amis-logo {
+    width: 100%;
+    height: 24px;
+    background-image: url(Icon_image/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.navbar .navbar-content {
+    width: 100%;
+}
+
+.nav-item {
+    display: flex;
+    padding-left: 24px;
+    height: 44px;
+    cursor: pointer;
+    line-height: 44px;
+    font-size: 13;
+}
+
+.nav-item:hover {
+    background-color: #e5e5e5;
+    color: #000000;
+}
+
+.nav-item .nav-item-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-self: center;
+    margin: auto 0;
+    margin-right: 8px;
+    background-size: contain;
+}
+
+.nav-item .icon_dm0 {
+    background-image: url(Icon_image/icon_camera.png);
+}
+
+.nav-item .icon_dm1 {
+    background-image: url(Icon_image/icon_danhmuc.png);
+}
+
+.nav-item .icon_dm2 {
+    background-image: url(Icon_image/icon_book.png);
+}
+
+.nav-item .icon_dm3 {
+    background-image: url(Icon_image/icon_camera.png);
+}
+
+
+/* Header */
+
+.header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: calc(100% - 221px);
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.header .form-group {
+    padding: 14px;
+    font-size: 16px;
+    width: 80%;
+}
+
+.header .form-group select {
+    height: 40px;
+    width: 200px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.header .form-group option {
+    cursor: pointer;
+}
+
+.header .acount {
+    padding: 14px;
+    font-size: 16px;
+    width: 20%;
+    display: flex;
+}
+
+.header .acount-avatar {
+    background-image: url(Icon_image/duc.jpg);
+    background-size: contain;
+    width: 19px;
+    height: 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+.acount .account-option {}
+
+
+/* Content */
+
+.content {
+    position: absolute;
+    top: 61px;
+    left: 228px;
+    width: calc(100% - 220px);
+    height: calc(100vh - 61px);
+    background-color: #e9ebee;
+}
+
+.content .page-ttle {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.content .page-ttle .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.content .page-ttle .page-feature {
+    position: absolute;
+    right: 16px;
+}
+
+.content .page-ttle .content .filter-bar {}
+
+.content .gird {}
+
+.content .paing-bar {}
