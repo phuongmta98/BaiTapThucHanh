@@ -23,20 +23,33 @@
                 $.each(columns, function (index, th) {
                     var td = $('<td><div><span></span></div></td>');
                     var fieldName = $(th).attr('fieldName');
+                    var formatType = $(th).attr('formatType');
                     var value = obj[fieldName];
-                    if (fieldName == "DateOfBirth") {
-                        value = formatDate(value);
-                    }
-                    if (fieldName == "Salary") {
-                        value = formatMoney(value);
-                    }
                     
-                    if (fieldName == "Gender") {
-                        var check = `<input type="checkbox"/>`;
-                        if (obj[fieldName]==1)
-                        check = `<input type="checkbox" checked/>`;
-                        value = check;
+                    switch (formatType) {
+                        case "ddmmyyyy":
+                            value = formatDate(value);
+                            break;
+                        case "money":
+                            value = formatMoney(value);
+                            td.addClass("text-align-right");debugger;
+                            break;
+                        default:
+                            break;
                     }
+                    //if (fieldName == "DateOfBirth") {
+                    //    value = formatDate(value);
+                    //}
+                    //if (fieldName == "Salary") {
+                    //    value = formatMoney(value);
+                    //}
+                    
+                    //if (fieldName == "Gender") {
+                    //    var check = `<input type="checkbox"/>`;
+                    //    if (obj[fieldName]==1)
+                    //    check = `<input type="checkbox" checked/>`;
+                    //    value = check;
+                    //}
 
                     (td).append(value);
                     $(tr).append(td);
@@ -66,5 +79,6 @@
         }).fail(function (res) {
 
         })
+
     }
 }

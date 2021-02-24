@@ -6,3 +6,12 @@
     font-size: 20px;
     padding-left: 16px;
 }
+text-align-right{
+    text-align:right;
+}
+text-align-left{
+    text-align:left;
+}
+text-align-center{
+    text-align:center;
+}
