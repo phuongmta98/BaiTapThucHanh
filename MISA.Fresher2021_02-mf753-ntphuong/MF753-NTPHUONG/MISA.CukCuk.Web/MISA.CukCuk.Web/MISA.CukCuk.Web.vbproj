@@ -1772,6 +1772,7 @@
     <Content Include="css\common\main.css" />
     <Content Include="css\common\menu.css" />
     <Content Include="css\pages\customer.css" />
+    <Content Include="js\common\base.js" />
     <Content Include="js\common\common.js" />
     <Content Include="js\pages\customer.js" />
     <Content Include="js\pages\employee.js" />
