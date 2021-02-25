@@ -1,4 +1,4 @@
-﻿
+﻿/*content-title*/
 .content {
     width: 100%;
     height: calc(100% - 49px);
@@ -19,12 +19,13 @@
     height: 42px;
 }
 
-   
+
 #search {
     font-size: 11px;
     border: none;
     outline: none;
 }
+
 
 
 
@@ -34,7 +35,7 @@
     width: inherit;
     line-height: 56px;
     align-items: center;
-    background-color: #bbbbbb;
+    
 }
 
 .paging-left {

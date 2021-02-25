@@ -1769,6 +1769,7 @@
     <Content Include="css\common\icon.css" />
     <Content Include="css\common\input.css" />
     <Content Include="css\common\layout.css" />
+    <Content Include="css\common\m-dialog.css" />
     <Content Include="css\common\main.css" />
     <Content Include="css\common\menu.css" />
     <Content Include="css\pages\customer.css" />

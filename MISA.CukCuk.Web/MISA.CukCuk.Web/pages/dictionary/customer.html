@@ -13,6 +13,7 @@
     <link href="/css/common/icon.css" rel="stylesheet" />
     <link href="/css/common/input.css" rel="stylesheet" />
     <link href="/css/common/grid.css" rel="stylesheet" />
+    <link href="/css/common/m-dialog.css" rel="stylesheet" />
     <link href="/css/pages/customer.css" rel="stylesheet" />
 </head>
 <body>
@@ -98,7 +99,7 @@
                             <th fieldName="DepartmentName">Nhóm khách hàng</th>
                             <th fieldName="PhoneNumber">Điện thoại</th>
                             <th fieldName="Email">Email</th>
-                            <th fieldName="Address" style="max-width:100px;">Địa chỉ</th>
+                            <th fieldName="Address" style="max-width:100px;width:100px;">Địa chỉ</th>
                             <th fieldName="Salary" formatType="money">Số tiền nợ</th>
                             <th fieldName="DepartmentId">Mã thẻ thành viên</th>
                         </tr>
@@ -127,14 +128,34 @@
                     <span>10 Khách hàng/trang</span>
                 </div>
             </div>
-            <!-- paging -->
         </div>
         <!-- content -->
+
         <!-- body-right -->
+
+        <!--Dialog-->
+        <!--<div class="m-dialog dialog-detail">
+            <div class="dialog-modal"></div>
+            <div class="dialog-content">
+                <div class="dialog-header">
+                    <div class="dialog-header-title">Thong tin khach hang</div>
+                    <div class="dialog-header-close">
+                        <button>x</button>
+                    </div>
+                </div>
+                <div class="dialog-body">
+                    <div class="m-row">
+                        <div class="m-label">Ma nhan vien</div>
+                        <div class="m-controll"><input type="text" /></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>-->
+
         <script src="/lib/jquery-3.5.1.min.js"></script>
         <script src="/js/common/common.js"></script>
         <script src="/js/common/base.js"></script>
         <script src="/js/pages/customer.js"></script>
-
 </body>
 </html>
