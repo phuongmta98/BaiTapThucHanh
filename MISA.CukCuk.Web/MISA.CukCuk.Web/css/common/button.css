@@ -1,0 +1,75 @@
+﻿.btn-add {
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: #019160;
+    border-radius: 4px;
+    margin-right: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+    /*button thêm mới nhân viên*/
+    .btn-add .text-add {
+        border: none;
+        color: #fff;
+        background: none;
+        font-size: 13px;
+        padding-left: 8px;
+        font-family: 'GoogleSans-Regular';
+    }
+
+    .btn-add:hover {
+        cursor: pointer;
+        background-color: #2FBE8E;
+    }
+/* button refresh danh sach */
+.btn-feature {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    float: right;
+    margin-right: 16px;
+    border-radius: 4px;
+}
+
+    .btn-feature:hover {
+        background-color: #e9ebee;
+    }
+
+.btn-paging {
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #bbbbbb;
+    border-radius: 50%;
+}
+
+.btn-first-page {
+    background-image: url('/content/icon/btn-firstpage.svg');
+}
+
+.btn-next-page {
+    background-image: url('/content/icon/btn-next-page.svg');
+}
+
+.btn-prev-page {
+    background-image: url('/content/icon/btn-prev-page.svg');
+}
+
+.btn-last-page {
+    background-image: url('/content/icon/btn-lastpage.svg');
+}
+
+.btn-page-number {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.btn-paging:hover {
+    background-color: #fff;
+    cursor: pointer;
+}

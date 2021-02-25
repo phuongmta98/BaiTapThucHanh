@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-sua1
-=======
-Hướng dẫn cách sử dụng GitHub
-Sửa 1
->>>>>>> 97280628543a9b2cdc8a339d559852c4e3fe748c
