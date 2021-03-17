@@ -1,4 +1,4 @@
-﻿
+﻿/// <reference path="../../lib/jquery-3.5.1.min.js" />
 /**
  * chuyển ngày tháng đúng định dạng
  * @param {any} date tham số kiểu bất kì
@@ -31,6 +31,16 @@ function formatMoney(money) {
     else {
         var num = money.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
         return num;
+    }
+
+} 
+ 
+function formatGender(number) {
+    if (number == 0) {
+        return "Nam";
+    }
+    else {
+        return "Nữ";
     }
 
 } 

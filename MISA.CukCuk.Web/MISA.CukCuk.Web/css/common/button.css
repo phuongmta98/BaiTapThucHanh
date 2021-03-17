@@ -1,4 +1,4 @@
-﻿.btn-add {
+﻿#btn-add {
     float: right;
     display: flex;
     align-items: center;
@@ -10,16 +10,17 @@
     padding-left: 16px;
 }
     /*button thêm mới nhân viên*/
-    .btn-add .text-add {
+    #btn-add .text-add {
         border: none;
         color: #fff;
         background: none;
         font-size: 13px;
         padding-left: 8px;
         font-family: 'GoogleSans-Regular';
+        outline: none;
     }
 
-    .btn-add:hover {
+    #btn-add:hover {
         cursor: pointer;
         background-color: #2FBE8E;
     }
@@ -42,8 +43,9 @@
     width: 30px;
     background-size: contain;
     background-repeat: no-repeat;
-    border: 1px solid #bbbbbb;
-    border-radius: 50%;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
 }
 
 .btn-first-page {
@@ -63,6 +65,9 @@
 }
 
 .btn-page-number {
+    border-radius: 50%;
+    border: 1px solid #bbbbbb;
+    margin: 0 5px;
     height: 30px;
     width: 30px;
     line-height: 30px;
@@ -70,6 +75,32 @@
 }
 
 .btn-paging:hover {
-    background-color: #fff;
+    background-color: #e5e5e5;
     cursor: pointer;
+}
+
+.feature {
+    width: 60px;
+    height: 35px;
+    float: right;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+    margin-left: 16px;
+}
+
+    .feature:hover {
+        cursor: pointer;
+        background-color: #2FBE8E;
+    }
+
+#btn-cancel {
+    background-color: red;
+    border: none;
+    outline: none;
+}
+
+#btn-save {
+    background-color: green;
+    background-size: contain;
+    outline: none;
 }

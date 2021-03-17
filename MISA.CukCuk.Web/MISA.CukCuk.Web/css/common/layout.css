@@ -31,9 +31,7 @@
         background-repeat: no-repeat;
         margin-left: 10px;
     }
-    .logo-box:hover {
-        cursor: pointer;
-    }
+
 /* body-right */
 .body-right {
     width: calc(100% - 201px);

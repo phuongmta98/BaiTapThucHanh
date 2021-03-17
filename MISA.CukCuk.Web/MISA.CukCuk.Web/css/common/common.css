@@ -1,5 +1,4 @@
-﻿/*Tieu de cua trang*/
-.page-title {
+﻿.page-title {
     float: left;
     height: 40px;
     font-weight: bold;
@@ -7,7 +6,6 @@
     font-size: 20px;
     padding-left: 16px;
 }
-
 .text-align-right{
     text-align:right;
 }

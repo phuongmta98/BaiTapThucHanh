@@ -1,4 +1,4 @@
-﻿.input {
+﻿.content-find .input {
     margin-left: 16px;
     float: left;
     width: 220px;
@@ -8,4 +8,13 @@
     display: flex;
     align-items: center;
     overflow: auto;
+
+}
+input {
+    border: none;
+    outline: none;
+}
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    color: #bbbbbb;
 }

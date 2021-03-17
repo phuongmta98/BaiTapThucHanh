@@ -16,14 +16,16 @@
         margin-left: 16px;
     }
 
-.header-title-name {
+.header-title .header-title-name {
     font-weight: bold;
     font-size: 15px;
     border: none;
     outline: none;
-    cursor: pointer;
 }
 
+.header-title-name {
+    cursor: pointer;
+}
 
 .header .account {
     float: right;

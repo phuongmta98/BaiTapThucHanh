@@ -72,7 +72,7 @@
         <div class="content">
             <div class="content-add">
                 <div class="page-title">Danh sách khách hàng</div>
-                <div class="btn-add">
+                <div id="btn-add">
                     <div class="icon-add"></div>
                     <button class="text-add">Thêm khách hàng</button>
                 </div>
@@ -80,7 +80,7 @@
             <div class="content-find">
                 <div class="input">
                     <div class="icon-find"></div>
-                    <input id="search" type="text" style="width:174px" placeholder="Tìm theo mã, tên khách hàng" />
+                    <input type="text" style="width:174px" placeholder="Tìm theo mã, tên khách hàng" />
                 </div>
                 <div class="btn-feature">
                     <div class="icon-refresh"></div>
@@ -88,20 +88,21 @@
 
             </div>
             <!--content-table-->
-            <div class="grid grid-scroll">
+
+            <div class="grid">
                 <table border="0" width="100" cellspacing="0">
                     <thead>
                         <tr>
-                            <th fieldName="EmployeeId">Mã khách hàng</th>
+                            <th fieldName="EmployeeCode">Mã khách hàng</th>
                             <th fieldName="FullName">Họ và tên</th>
-                            <th fieldName="Gender">Giới tính</th>
+                            <th fieldName="Gender" formatType="gender">Giới tính</th>
                             <th fieldName="DateOfBirth" formatType="ddmmyyyy">Ngày sinh</th>
                             <th fieldName="DepartmentName">Nhóm khách hàng</th>
                             <th fieldName="PhoneNumber">Điện thoại</th>
                             <th fieldName="Email">Email</th>
-                            <th fieldName="Address" style="max-width:100px;width:100px;">Địa chỉ</th>
+                            <th fieldName="Address" formatType="address" style="max-width:100px;">Địa chỉ</th>
                             <th fieldName="Salary" formatType="money">Số tiền nợ</th>
-                            <th fieldName="DepartmentId">Mã thẻ thành viên</th>
+                            <th fieldName="PersonalTaxCode">Mã số thuế</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -111,7 +112,7 @@
             <!-- paging -->
             <div class="paging">
                 <div class="paging-left">
-                    <span>Hiển thị 1-10/1000 Khách hàng</span>
+                    <span>Hiển thị <b>1-10/1000 </b>Khách hàng</span>
                 </div>
                 <div class="paging-middle">
                     <div class="btn-paging btn-first-page"></div>
@@ -125,37 +126,81 @@
                     <div class="btn-paging btn-last-page"></div>
                 </div>
                 <div class="paging-right">
-                    <span>10 Khách hàng/trang</span>
+                    <span><b>10 </b>Khách hàng/trang</span>
                 </div>
             </div>
+            <!-- paging -->
         </div>
         <!-- content -->
-
-        <!-- body-right -->
-
-        <!--Dialog-->
-        <!--<div class="m-dialog dialog-detail">
+        <!--dialog-->
+        <div id="m-dialog">
             <div class="dialog-modal"></div>
             <div class="dialog-content">
                 <div class="dialog-header">
-                    <div class="dialog-header-title">Thong tin khach hang</div>
+                    <div class="dialog-header-title">Thông tin khách hàng</div>
                     <div class="dialog-header-close">
-                        <button>x</button>
+                        <button id="btn-close">x</button>
                     </div>
                 </div>
                 <div class="dialog-body">
-                    <div class="m-row">
-                        <div class="m-label">Ma nhan vien</div>
-                        <div class="m-controll"><input type="text" /></div>
+                    <div class="dialog-body-left">
+                        <div id="d-avartar"></div>
+                        <div id="d-avartar-text">Chọn ảnh của bạn có định dạng .jpg .jpeg .png .gif</div>
+                    </div>
+                    <div class="dialog-body-right">
+                        <div class="m-row-left">
+                            <div class="row-item">
+                                <div class="m-label">Mã khách hàng(<b style="color:red;">*</b>)</div>
+                                <div class="m-control"><input class="i-info" id="employeeCode" type="text" /></div>
+                            </div>
+
+                            <div class="row-item">
+                                <div class="m-label">Ngày sinh</div>
+                                <div class="m-control"><input class="i-info" id="dateOfBirth" type="date" /></div>
+                            </div>
+                            <div class="row-item">
+                                <div class="m-label">Email(<b style="color:red;">*</b>)</div>
+                                <div class="m-control"><input class="i-info" id="email" type="text" /></div>
+                            </div>
+                            <div class="row-item">
+                                <div class="m-label">Họ và tên</div>
+                                <div class="m-control"><input class="i-info" id="fullName" type="text" /></div>
+                            </div>
+                        </div>
+                        <div class="m-row-right">
+                            <div class="row-item">
+                                <div class="m-label">Số điện thoại(<b style="color:red;">*</b>)</div>
+                                <div class="m-control"><input class="i-info" id="phoneNumber" type="text" /></div>
+                            </div>
+                            <div class="row-item">
+                                <div class="m-label">Giới tính</div>
+                                <div class="m-control"><input class="i-info" id="gender" type="text" /></div>
+                            </div>
+                            <div class="row-item">
+                                <div class="m-label">Địa chỉ(<b style="color:red;">*</b>)</div>
+                                <div class="m-control"><input class="i-info" id="address" type="text" /></div>
+                            </div>
+                           
+                        </div>
+
+
                     </div>
                 </div>
+                <div class="dialog-footer">
+                    <class></class>
+                    <button class="feature" id="btn-cancel">Hủy</button>
+                    <button class="feature" id="btn-save">Lưu</button>
 
+                </div>
             </div>
-        </div>-->
-
+        </div>
+        <!-- body-right -->
         <script src="/lib/jquery-3.5.1.min.js"></script>
         <script src="/js/common/common.js"></script>
+
         <script src="/js/common/base.js"></script>
         <script src="/js/pages/customer.js"></script>
+        <!--  <script src="/js/pages/customer.js"></script>-->
+
 </body>
 </html>
