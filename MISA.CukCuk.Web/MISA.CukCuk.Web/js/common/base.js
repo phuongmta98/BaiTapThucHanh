@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-
+    var status = "a";
+  
     $('#btn-add').click(function () {
         document.getElementById('m-dialog').style.display = 'block';
     })
@@ -7,41 +8,30 @@
         document.getElementById('m-dialog').style.display = 'none';
 
     })
-    $('#btn-save').click(function () {
-        var customer = getDataInForm();
-        if (validateData(customer)) {
-           
-                    $.ajax({
-                        url: "http://api.manhnv.net/api/employees",
-                        method: "POST",
-                        data: JSON.stringify(customer),
-                        contentType: "application/json"
-                    }).done(function (response) {
 
-                        // Thông báo kết quả
-                        alert("Thêm thành công");
-                        //đóng dialog
-                        document.getElementById('m-dialog').style.display = 'none';
-                        //Load lại dữ liệu
-                        loadData();
-
-                    }).fail(function (res) {
-
-
-                    });
-         
-        }
+   //  $('table tbody').click(editData);
+    $('table tbody').on('dblclick', 'tr', function() {
       
-    })
+    //   document.getElementById('m-dialog').style.display = 'block';
+        customerID = $(this).data().id;
+        //getCustomerById(customerID);
+        getByID(customerID);
+       
+    });
+    $('#btn-save').click(saveData);
+    $('#btn-delete').click(deleteData);
 
 })
 class BaseJS {
+
 
     constructor() {
         this.getDataUrl = null;
         this.setDataUrl();
         this.loadData();
+      
         //this.showDialog();
+
     }
 
     loadData() {
@@ -55,9 +45,11 @@ class BaseJS {
             var data = res;
             //  debugger;
             $.each(res, function (index, obj) {
+               
 
                 //var 
                 var tr = $('<tr></tr>');
+             
                 //Lay thong tin
                 $.each(columns, function (index, th) {
                     var td = $('<td><div><span></span></div></td>');
@@ -88,7 +80,9 @@ class BaseJS {
 
                     (td).append(value);
                     $(tr).append(td);
-
+                    tr.data("id", obj.CustomerId);
+                  
+       
                 })
 
                 $('table tbody').append(tr);
@@ -100,13 +94,109 @@ class BaseJS {
         })
 
     }
-  
 
 
 }
+
+
+function getByID(customerID) {
+    document.getElementById('m-dialog').style.display = 'block';
+    status = "edit";
+    // lay hang duoc chon
+    $.ajax({
+        url: "http://api.manhnv.net/api/customers" + "/" + customerID,
+        method: "GET"
+        //data: JSON.stringify(customer),
+        //contentType: "application/json"
+
+    }).done(function (res) {
+     
+        $('#customerCode').val(res.CustomerCode),
+            $('#email').val(res.Email),
+            $('#fullName').val(res.FullName),
+            $('#phoneNumber').val(res.PhoneNumber),
+            $('#gender').val(formatGender(res.Gender)),
+         //   document.getElementById('dateOfBirth').value((res.DateOfBirth)),
+            $('#address').val(res.Address)
+            $('#dateOfBirth').val(formatDate(res.DateOfBirth))
+      
+    }).fail(function (res) {
+
+    });
+   
+}
+function deleteData() {
+    $.ajax({
+        url: "http://api.manhnv.net/api/customers" + "/" + customerID,
+        method: "DELETE"
+
+    }).done(function (res) {
+        alert("xoa thanh cong");
+
+    }).fail(function (res) {
+        alert("xoa khong thanh cong");
+    });
+
+}
+function saveData() {
+  
+    var customer = getDataInForm();
+    if (status == "edit") {
+        if (validateData(customer)) {
+            $.ajax({
+                url: "http://api.manhnv.net/api/customers" + "/" + customerID,
+                method: "PUT",
+                data: JSON.stringify(customer),
+                contentType: "application/json"
+
+            }).done(function (response) {
+
+                // Thông báo kết quả
+                alert("Sửa thành công");
+                //đóng dialog
+                document.getElementById('m-dialog').style.display = 'none';
+                //Load lại dữ liệu
+                //   loadData();
+
+
+            }).fail(function (res) {
+                alert("sua khong thành công");
+
+            });
+           
+
+        } 
+    }
+    else {
+        $.ajax({
+            url: "http://api.manhnv.net/api/customers",
+            method: "POST",
+            data: JSON.stringify(customer),
+            contentType: "application/json"
+
+        }).done(function (response) {
+
+            // Thông báo kết quả
+            alert("Thêm thành công");
+            //đóng dialog
+            document.getElementById('m-dialog').style.display = 'none';
+            //Load lại dữ liệu
+            //   loadData();
+
+
+        }).fail(function (res) {
+            alert("them khong thành công");
+
+        });
+
+    }
+}
+
+   
+
 function getDataInForm() {
     var customer = {
-        EmployeeCode: $('#employeeCode').val(),
+        CustomerCode: $('#customerCode').val(),
         Email: $('#email').val(),
         FullName: $('#fullName').val(),
         PhoneNumber: $('#phoneNumber').val(),
@@ -114,17 +204,17 @@ function getDataInForm() {
         Address: $('#address').val(),
         DateOfBirth: $('#dateOfBirth').val()
     };
-    return customer;
+  
 }
 function validateData(customer) {
     //check mã
-    if (customer.EmployeeCode=="") {
+    if (customer.CustomerCode == "") {
         alert("ma khách hàng không được phép để trống");
-        $('#employeeCode').focus();
+        $('#customerCode').focus();
         return false;
     }
     //check mã
-    if (customer.Email=="") {
+    if (customer.Email == "") {
         alert('email không được phép để trống');
         $('#email').focus();
         return false;
@@ -137,13 +227,13 @@ function validateData(customer) {
         }
     }
     //check mã
-    if (customer.FullName=="") {
+    if (customer.FullName == "") {
         alert('Tên khách hàng không được phép để trống');
         $('#fullName').focus();
         return false;
     }
     //check mã
-    if (customer.PhoneNumber=="") {
+    if (customer.PhoneNumber == "") {
         alert('Số điện thoại khách hàng không được phép để trống');
         $('#phoneNumber').focus();
         return false;

@@ -1,7 +1,7 @@
 ﻿@import url('m-dialog.css');
 
 #m-dialog {
-    display: none;
+    /*display: none;*/
     border: 3px solid black;
 }
 
@@ -60,55 +60,62 @@
                     cursor: pointer;
                 }
 
-.dialog-body {
-    width: 100%;
-    height: calc(100% - 80px);
-    background-color: aqua;
-    display: flex;
-}
-
-    .dialog-body .dialog-body-left {
-        width: 200px;
-        height: 100%;
-        background-color: green;
-    }
-
-        .dialog-body .dialog-body-left #d-avartar {
-            width: 80%;
-            margin: auto;
-            height: 80%;
-            background-color: green;
-            background-repeat: no-repeat;
-            background-position: bottom;
-            background-size: contain;
-            background-image: url('/content/img/default-avatar.jpg');
-        }
-
-        .dialog-body .dialog-body-left #d-avartar-text {
-            text-align: center;
-        }
-
-
-
-    .dialog-body .dialog-body-right {
+    #m-dialog .dialog-body {
         width: 100%;
-        height: 100%;
-        background-color: pink;
+        height: calc(100% - 80px);
+        background-color: aqua;
         display: flex;
     }
 
-        .dialog-body .dialog-body-right .m-row-left {
-            width: 50%;
-            height: 100%;
-            background-color: yellow;
-            margin: auto;
-        }
+    .dialog-body .dialog-top {
+       
+        height: 200px;
+        display: flex;
+    }
 
-        .dialog-body .dialog-body-right .m-row-right {
-            width: 50%;
-            height: 100%;
-            background-color: yellowgreen;
-        }
+.dialog-top .dialog-body-left {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+}
+
+    .dialog-top .dialog-body-left #d-avartar {
+        width: 80%;
+        margin: auto;
+        height: 80%;
+        background-color: green;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        border-radius: 50%;
+        background-image: url('/content/img/default-avatar.jpg');
+    }
+
+    .dialog-top .dialog-body-left #d-avartar-text {
+        text-align: center;
+    }
+
+
+
+.dialog-top .dialog-body-right {
+  width: calc(100% - 200px);
+    height: 200px;
+    background-color: pink;
+    /*display: flex;*/
+}
+
+    .dialog-top .dialog-body-right .m-row-left {
+        width: 50%;
+        height: 100%;
+        background-color: yellow;
+        margin: auto;
+    }
+
+    .dialog-top .dialog-body-right .m-row-right {
+        width: 50%;
+        height: 100%;
+        background-color: yellowgreen;
+    }
 
 .row-item {
     padding: 10px 0;
