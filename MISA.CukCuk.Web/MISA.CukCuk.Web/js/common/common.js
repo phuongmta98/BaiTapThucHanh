@@ -15,7 +15,7 @@ function formatDate(date) {
             year = date.getFullYear();
         day = day < 10 ? '0' + day : day;
         month = month < 10 ? '0' + month : month;
-        return day + '/' + month + '/' + year;
+        return year + '-' + month + '-' +day ;
     }
 }
 

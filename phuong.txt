@@ -1,0 +1,14 @@
+Ctrl + Alt + C: Call stack(luc dang debug bam to hop phim mo ra: xem tat ca cac ham no da chay qua, có luôn cửa sổ imediate window
+Ctrl + shift + A: Add new items
+Tạo Genneric cho Interface bằng cách truyền trên tên Interface hoặc truyền vào method
+ + Phải truyền tên Genneric cho cả class cha trước Interface dùng nó
+				JS
+- Chú ý con trỏ this: var me = this hoặc .bind(this) để gán con trỏ this ở hàm hiện tại cho nó còn this sử dụng là this của class ban đầu
+- "click" chỉ dành cho những thằng đã được sinh ra rồi thôi  chú ý có thể khoanh vùng phạm vi để khắc phục: $('table tbody'). on(..' tr')
+- Nếu sự klieejn giống nhau, nó sẽ nạp chồng và chạy 2 lần, cần kiểm tra kĩ nếu chương trình chạy nặng
+- Validate cả ở client site và server site
+- Nhớ xác định phạm vi để vẽ css cho chuẩn: input .border-red{} ( chỉ các input thỏa mãn đc dùng)
+- importent - inline - id - group
+- CHú ý focus vào ô nhập liệu lỗi đầu tiên để nhập liệu tiếp
+- Consolog(customer)
+- Dowload jquery ui, Làm Dialog động chuẩn convension

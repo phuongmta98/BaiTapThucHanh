@@ -1,25 +1,5 @@
 ﻿$(document).ready(function () {
     var status = "a";
-  
-    $('#btn-add').click(function () {
-        document.getElementById('m-dialog').style.display = 'block';
-    })
-    $('#btn-close').click(function () {
-        document.getElementById('m-dialog').style.display = 'none';
-
-    })
-
-   //  $('table tbody').click(editData);
-    $('table tbody').on('dblclick', 'tr', function() {
-      
-    //   document.getElementById('m-dialog').style.display = 'block';
-        customerID = $(this).data().id;
-        //getCustomerById(customerID);
-        getByID(customerID);
-       
-    });
-    $('#btn-save').click(saveData);
-    $('#btn-delete').click(deleteData);
 
 })
 class BaseJS {
@@ -29,11 +9,76 @@ class BaseJS {
         this.getDataUrl = null;
         this.setDataUrl();
         this.loadData();
-      
-        //this.showDialog();
+        this.initEvent();
+
 
     }
 
+    initEvent() {
+        $('#btn-add').click(function () {
+            document.getElementById('m-dialog').style.display = 'block';
+        })
+        $('#btn-close').click(function () {
+            document.getElementById('m-dialog').style.display = 'none';
+
+        })
+        $('table tbody').on('dblclick', 'tr', function () {
+            //dialogDetail.dialog('open');
+            document.getElementById('m-dialog').style.display = 'block';
+
+            customerID = $(this).data().id;
+            //getCustomerById(customerID);
+            getByID(customerID);
+
+        });
+        $('input[required]').blur(function () {
+            var value = $(this).val();
+            if (!value) {
+                $(this).addClass('border-red');
+                //$(this).focus();
+                $(this).attr('title', 'trường này không được phép bỏ trống')
+                $(this).attr('validate', false);
+            }
+            else {
+                $(this).removeClass('border-red');
+                $(this).attr('validate', true);
+            }
+        })
+        $('input[type=email]').blur(function () {
+            var value = $(this).val();
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!re.test(value)) {
+                $(this).addClass('border-red');
+                //$(this).focus();
+                $(this).attr("title", "email không đúng định dạng");
+                $(this).attr('validate', false);
+            }
+            else {
+                $(this).removeClass('border-red');
+                $(this).attr('validate', true);
+            }
+        });
+        //$('#btn-save').click(function () {
+        //    var inputRequireds = $('input[required],input[type=email]');
+
+        //    $.each(inputRequireds, function (index, input) {
+        //        $(input).trigger('blur');
+        //    })
+        //    var inputNotValids = $('input[validate="false"]');
+        //    if (inputNotValids.length>0) {
+        //        alert("Dữ liệu không hợp lệ, vui lòng kiểm tra lại");
+        //        inputNotValids[0].focus();
+        //        return;
+                
+        //    }
+
+        //});
+        $('#btn-save').click(saveData);
+
+        $('#btn-delete').click(deleteData);
+
+
+    }
     loadData() {
         var columns = $('table thead th');
         var fieldName = [];
@@ -45,11 +90,11 @@ class BaseJS {
             var data = res;
             //  debugger;
             $.each(res, function (index, obj) {
-               
+
 
                 //var 
                 var tr = $('<tr></tr>');
-             
+
                 //Lay thong tin
                 $.each(columns, function (index, th) {
                     var td = $('<td><div><span></span></div></td>');
@@ -81,8 +126,8 @@ class BaseJS {
                     (td).append(value);
                     $(tr).append(td);
                     tr.data("id", obj.CustomerId);
-                  
-       
+
+
                 })
 
                 $('table tbody').append(tr);
@@ -110,20 +155,29 @@ function getByID(customerID) {
         //contentType: "application/json"
 
     }).done(function (res) {
-     
+
         $('#customerCode').val(res.CustomerCode),
+            $('#memberCardCode').val(res.MemberCardCode),
+            $('#customerGroupName').val(res.CustomerGroupName),
+            $('#companyName').val(res.CompanyName),
+            $('#companyTaxCode').val(res.CompanyTaxCode),
+
             $('#email').val(res.Email),
             $('#fullName').val(res.FullName),
             $('#phoneNumber').val(res.PhoneNumber),
             $('#gender').val(formatGender(res.Gender)),
-         //   document.getElementById('dateOfBirth').value((res.DateOfBirth)),
+            //   document.getElementById('dateOfBirth').value((res.DateOfBirth)),
             $('#address').val(res.Address)
-            $('#dateOfBirth').val(formatDate(res.DateOfBirth))
-      
+        $('#dateOfBirth').val(formatDate(res.DateOfBirth))
+
+        if ($('#gender').val() == 'Nữ') {
+            $('#gender')
+        }
+
     }).fail(function (res) {
 
     });
-   
+
 }
 function deleteData() {
     $.ajax({
@@ -139,8 +193,21 @@ function deleteData() {
 
 }
 function saveData() {
-  
+    var inputRequireds = $('input[required],input[type=email]');
+
+    $.each(inputRequireds, function (index, input) {
+        $(input).trigger('blur');
+    })
+    var inputNotValids = $('input[validate="false"]');
+    if (inputNotValids.length > 0) {
+        alert("Dữ liệu không hợp lệ, vui lòng kiểm tra lại");
+        inputNotValids[0].focus();
+        return;
+
+    }
+
     var customer = getDataInForm();
+
     if (status == "edit") {
         if (validateData(customer)) {
             $.ajax({
@@ -163,48 +230,59 @@ function saveData() {
                 alert("sua khong thành công");
 
             });
-           
 
-        } 
+
+        }
     }
     else {
-        $.ajax({
-            url: "http://api.manhnv.net/api/customers",
-            method: "POST",
-            data: JSON.stringify(customer),
-            contentType: "application/json"
+        if (validateData(customer)) {
+            $.ajax({
+                url: "http://api.manhnv.net/api/customers",
+                method: "POST",
+                data: JSON.stringify(customer),
+                contentType: "application/json"
 
-        }).done(function (response) {
+            }).done(function (response) {
 
-            // Thông báo kết quả
-            alert("Thêm thành công");
-            //đóng dialog
-            document.getElementById('m-dialog').style.display = 'none';
-            //Load lại dữ liệu
-            //   loadData();
+                // Thông báo kết quả
+                alert("Thêm thành công");
+                //đóng dialog
+                document.getElementById('m-dialog').style.display = 'none';
+                //Load lại dữ liệu
+                //   loadData();
 
 
-        }).fail(function (res) {
-            alert("them khong thành công");
+            }).fail(function (res) {
+                alert("them khong thành công");
 
-        });
+            });
+        }
 
     }
+    debugger;
+
 }
 
-   
 
 function getDataInForm() {
     var customer = {
         CustomerCode: $('#customerCode').val(),
+
         Email: $('#email').val(),
         FullName: $('#fullName').val(),
         PhoneNumber: $('#phoneNumber').val(),
         Gender: $('#gender').val(),
         Address: $('#address').val(),
-        DateOfBirth: $('#dateOfBirth').val()
+        DateOfBirth: $('#dateOfBirth').val(),
+
+        MemberCardCode: $('#memberCardCode').val(),
+        CustomerGroupName: $('#customerGroupName').val(),
+        CompanyName: $('#companyName').val(),
+        CompanyTaxCode: $('#companyTaxCode').val()
     };
-  
+    return customer;
+
+
 }
 function validateData(customer) {
     //check mã
@@ -214,18 +292,18 @@ function validateData(customer) {
         return false;
     }
     //check mã
-    if (customer.Email == "") {
-        alert('email không được phép để trống');
-        $('#email').focus();
-        return false;
-    }
-    else {
-        if (validateEmail(customer.Email) == false) {
-            alert('email không hợp lệ');
-            $('#email').focus();
-            return false;
-        }
-    }
+    //if (customer.Email == "") {
+    //    alert('email không được phép để trống');
+    //    $('#email').focus();
+    //    return false;
+    //}
+    //else {
+    //    if (validateEmail(customer.Email) == false) {
+    //        alert('email không hợp lệ');
+    //        $('#email').focus();
+    //        return false;
+    //    }
+    //}
     //check mã
     if (customer.FullName == "") {
         alert('Tên khách hàng không được phép để trống');
@@ -240,8 +318,4 @@ function validateData(customer) {
     }
     return true;
 
-}
-function validateEmail(email) {
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
 }

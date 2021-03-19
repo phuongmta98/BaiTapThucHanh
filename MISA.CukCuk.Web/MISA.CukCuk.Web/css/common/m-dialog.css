@@ -17,7 +17,6 @@
     }
 
     #m-dialog .dialog-content {
-        /*padding: 0 24px 24px 24px;*/
         position: absolute;
         width: 800px;
         height: 472px;
@@ -28,10 +27,9 @@
     }
 
     #m-dialog .dialog-header {
-        width: 100%;
+        width: 752px;
+        margin: auto;
         height: 40px;
-        background-color: blue;
-        /*padding: 0 0 0 24px;*/
         line-height: 40px;
     }
 
@@ -53,6 +51,7 @@
                 background-color: #ffffff;
                 width: 40px;
                 height: 40px;
+                font-size: 20px;
             }
 
                 #m-dialog .dialog-header .dialog-header-close button:hover {
@@ -62,95 +61,145 @@
 
 
     #m-dialog .dialog-body {
-        width:800px;
-       
-        height: calc(100% - 80px);
-        background-color: aqua;
-      
+        width: 752px;
+        margin: auto;
+        height: calc(100% - 65px);
     }
 
 .dialog-body .dialog-top {
-    width: 800px;
-    display:flex;
+    display: flex;
     height: 200px;
-    /*display: flex;*/
-    background-color: mediumpurple;
 }
 
-        .dialog-body .dialog-top .dialog-body-left {
-            width: 30%;
-            height: 200px;
-            background-color: green;
-        }
-
-    .dialog-top .dialog-body-left #d-avartar {
-        width: 150px;
-        margin: auto;
-        height: 150px;
-        background-color: green;
-        background-repeat: no-repeat;
-        background-position: bottom;
-        background-size: contain;
-        border-radius: 50%;
-        background-image: url('/content/img/default-avatar.jpg');
+    .dialog-body .dialog-top .dialog-body-left {
+        width: 30%;
+        height: 200px;
     }
 
-    .dialog-top .dialog-body-left #d-avartar-text {
-        text-align: center;
-    }
+.dialog-top .dialog-body-left #d-avartar {
+    width: 150px;
+    margin: auto;
+    height: 150px;
+    border: 1px solid #e5e5e5;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    border-radius: 50%;
+    background-image: url('/content/img/default-avatar.jpg');
+}
+
+.dialog-top .dialog-body-left #d-avartar-text {
+    text-align: center;
+    max-width: 200px;
+}
 
 
 
 .dialog-top .dialog-body-right {
-  width: 70%;
+    width: 70%;
     height: 200px;
-    background-color: pink;
     display: flex;
 }
 
     .dialog-top .dialog-body-right .m-row-left {
         width: 50%;
         height: 100%;
-        background-color: yellow;
         margin: auto;
     }
 
     .dialog-top .dialog-body-right .m-row-right {
         width: 50%;
         height: 100%;
-        background-color: yellowgreen;
     }
 
 .row-item {
     padding: 10px 0;
 }
 
+    .row-item .m-control-gender {
+        line-height: 32px;
+    }
+
     .row-item #check-follow {
         line-height: 68px;
     }
-.dialog-body .dialog-center{
-    width:100%;
-    height:132px;
-    background-color:red;
-    display:flex;
-    }
+
+.dialog-body .dialog-center {
+    width: 100%;
+    height: 132px;
+    display: flex;
+}
+
 .dialog-center .m-row-left {
     width: 65%;
     height: 132px;
-    background-color: #808080;
 }
+
 .dialog-center .m-row-right {
     width: 35%;
     height: 132px;
-    background-color: #fff;
 }
+
 .dialog-bottom {
     width: 100%;
     height: 61px;
-    background-color: black;
 }
+
 .dialog-footer {
     width: 100%;
     height: 40px;
     background-color: #bbbbbb;
+    line-height: 40px;
+    align-items: center;
+}
+.feature {
+    width: 60px;
+    height: 34px;
+    float: right;
+    border-radius: 5px;
+    border: 1px solid #bbbbbb;
+    margin-right: 30px;
+    background-size: contain;
+    outline: none;
+}
+
+    .feature:hover {
+        cursor: pointer;
+        background-color: #2FBE8E;
+    }
+
+.dialog-center .m-row-left .m-control {
+    width: 477px;
+}
+
+.dialog-bottom .m-row-left .m-control {
+    width: 739px;
+}
+
+.m-control {
+    width: 250px;
+    height: 32px;
+   
+    border-radius:5px;
+}
+.dialog-body input {
+    width: inherit;
+    height: inherit;
+    border: 1px solid #e5e5e5;
+}
+.c-info {
+    width: 256px;
+    height: 36px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+
+.d-info {
+    width: 253px;
+    height: 36px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+input.border-red {
+    border: 1px solid red;
 }
