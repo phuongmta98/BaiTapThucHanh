@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Misa.ApplicationCore.Model
 {
 
@@ -10,7 +12,7 @@ namespace Misa.ApplicationCore.Model
     /// Thông tin kh
     /// CreatedBY: Nguyễn Thị Phượng(6/3/2021)
     /// </summary>
-    public class Customer
+    public class Customer:BaseEntity
     {
         #region Declare
         static List<Customer> ListCustomer = new List<Customer>()
@@ -42,14 +44,19 @@ namespace Misa.ApplicationCore.Model
         /// <summary>
         /// Mã kh
         /// </summary>
+        //[PrimaryKey]
         public Guid? CustomerId { get; set; }
         /// <summary>
         /// Mã kh
         /// </summary>
+      [Required]
+      //[CheckDuplicate]
+        [DisplayName("Mã khách hàng")]
         public string CustomerCode { get; set; }
         /// <summary>
         /// Họ và tên khách hàng
         /// </summary>
+        [DisplayName("Tên khách hàng")]
         public string FullName { get; set; }
         /// <summary>
         /// Ngày sinh khách hàng
@@ -70,6 +77,8 @@ namespace Misa.ApplicationCore.Model
         /// <summary>
         /// Số điện thoại khách hàng
         /// </summary>
+        [Required]
+        [DisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Tên công ty
@@ -82,6 +91,8 @@ namespace Misa.ApplicationCore.Model
         /// <summary>
         /// Email
         /// </summary>
+        [Required]
+        [DisplayName("Email")]
         public string Email { get; set; }
         /// <summary>
         /// Địa chỉ
@@ -91,25 +102,9 @@ namespace Misa.ApplicationCore.Model
         /// Ghi chú
         /// </summary>
         public string Note { get; set; }
-        /// <summary>
-        /// Ngày tạo
-        /// </summary>
-        public DateTime? CreatedDate { get; set; }
-        /// <summary>
-        /// Người tạo
-        /// </summary>
-        public string CreatedBy { get; set; }
-        /// <summary>
-        /// Ngày sửa
-        /// </summary>
-        public DateTime? ModifiedDate { get; set; }
-        /// <summary>
-        /// Người sửa
-        /// </summary>
-        public string ModifiedBy { get; set; }
-        #endregion
-        #region Method
 
+        #region Method
+        #endregion
         #region Others
         #endregion
     }

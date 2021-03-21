@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Misa.ApplicationCore
 {
-    public class CustomerGroupService:BaseService
+    public class CustomerGroupService : BaseService
     {
-        public CustomerGroupService(IBaseContext baseContext, ICustomerContext customerContext) :base(baseContext,customerContext)
+        public CustomerGroupService(IBaseContext baseContext) :base(baseContext)
         {
 
         }

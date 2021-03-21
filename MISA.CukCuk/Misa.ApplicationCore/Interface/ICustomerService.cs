@@ -9,5 +9,7 @@ namespace Misa.ApplicationCore.Interface
     public interface ICustomerService: IBaseService
     {
         public Customer GetCustomerByCode(string customerCode);
+       
+
     }
 }

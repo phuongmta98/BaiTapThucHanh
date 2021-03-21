@@ -18,29 +18,16 @@ namespace MISA.CukCuk.API.Controllers
     public class CustomersController : BaseController<Customer>
     {
         ICustomerService _customerService;
-        public CustomersController(IBaseService baseService, ICustomerService customerService) : base(baseService)
+        public CustomersController( ICustomerService customerService) : base(customerService)
         {
-            this._customerService = customerService;
+            _customerService = customerService;
         }
 
         /// <summary>
         /// Lấy thông tin danh sách khách hàng
         /// </summary>
         /// <returns></returns>
-        //[HttpGet]
-        //public IActionResult GetCustomer()
-        //{
-        //    var baseService = new BaseService();
-        //    var customers = baseService.GetAll<Customer>().ToList();
-        //    if (customers.Count > 0)
-        //    {
-        //        return StatusCode(200, customers);
-        //    }
-        //    else
-        //    {
-        //        return StatusCode(204,customers);
-        //    }
-        //}
+      
         ///// <summary>
         ///// Lấy thông tin khách hàng theo ID
         ///// </summary>

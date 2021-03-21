@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Misa.ApplicationCore;
 using Misa.ApplicationCore.Enums;
+using Misa.ApplicationCore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace MISA.CukCuk.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-         
+
             var entities = _baseService.GetAll<MISAEntity>().ToList();
             if (entities.Count > 0)
             {
@@ -44,7 +45,7 @@ namespace MISA.CukCuk.API.Controllers
         [HttpGet("{entityId}")]
         public IActionResult GetById(Guid entityId)
         {
-           
+
             var entity = _baseService.GetObjectById<MISAEntity>(entityId);
             if (entity != null)
             {
@@ -64,20 +65,95 @@ namespace MISA.CukCuk.API.Controllers
         public IActionResult Insert(MISAEntity entity)
         {
 
-           
-          
-            var serviceResult = _baseService.InsertObject<MISAEntity>(entity);
-            if (serviceResult.MISACode == MisaCode.IsValid && (int)serviceResult.Data > 0)
+            try
             {
-                return Created("Thêm khách hàng mới thành công", entity);
+            var serviceResult = _baseService.InsertObject<MISAEntity>(entity)  ;
+
+                if (serviceResult.MISACode == MisaCode.Susscess)
+                {
+                    return Created("Thêm khách hàng mới thành công", entity);
+                }
+                else if (serviceResult.MISACode == MisaCode.NotValid || serviceResult.MISACode == MisaCode.IsEmpty)
+                {
+                    return StatusCode(400, serviceResult.Msg);
+                }
+                else
+                {
+                    return NoContent();
+                }
+
             }
-            if (serviceResult.MISACode == MisaCode.NotValid)
+            catch (Exception ex)
             {
-                return BadRequest(serviceResult.Data);
+                return StatusCode(500, new
+                {
+                    devMsg = new { msg = "Lỗi server khi thêm" },
+                    userMsg = ex.Message,
+
+                    code = 500
+                }) ;
+
             }
-            else
+        }
+        [HttpPut]
+        public IActionResult Update(MISAEntity entity)
+        {
+
+            try
             {
-                return NoContent();
+                var serviceResult = _baseService.UpdateObject<MISAEntity>(entity);
+
+                if (serviceResult.MISACode == MisaCode.Susscess)
+                {
+                    return Created("Sửa khách hàng mới thành công", entity);
+                }
+                else if (serviceResult.MISACode == MisaCode.NotValid || serviceResult.MISACode == MisaCode.IsEmpty)
+                {
+                    return StatusCode(400, serviceResult.Msg);
+                }
+                else
+                {
+                    return NoContent();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    devMsg = new { msg = "Lỗi server khi sửa" },
+                    userMsg = ex.Message,
+
+                    code = 500
+                });
+
+            }
+        }
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            var rowAffect = _baseService.DeleteObject<MISAEntity>(entityId);
+            try
+            {
+                if (rowAffect <= 0)
+                {
+                    return BadRequest(400);
+                }
+                else
+                {
+                    return StatusCode(200, "Thanh cong");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    devMsg = new { msg = "Lỗi server, không xóa được" },
+                    userMsg = ex.Message,
+
+                    code = "500"
+                });
+
             }
         }
         // [HttpDelete]
