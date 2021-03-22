@@ -25,6 +25,7 @@ namespace Misa.ApplicationCore
         }
         protected override void ValidateCustomer<Customer>(Customer customer)
         {
+            serviceResult.isValid = false;
             //base.ValidateCustomer(customer);
             var propertyName = customer.GetType().GetProperty("CustomerCode");
             var propertyValue = propertyName.GetValue(customer).ToString();

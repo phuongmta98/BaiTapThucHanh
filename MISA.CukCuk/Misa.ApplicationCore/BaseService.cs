@@ -2,12 +2,10 @@
 using Misa.ApplicationCore.Enums;
 using Misa.ApplicationCore.Interface;
 using Misa.ApplicationCore.Model;
-using Newtonsoft.Json;
-using ServiceStack.DataAnnotations;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -20,6 +18,7 @@ namespace Misa.ApplicationCore
         IBaseContext _baseContext;
         //ICustomerContext _customerContext;
         protected ServiceResult serviceResult;
+         List<string> listError;
         public BaseService(IBaseContext baseContext)
         {
             this._baseContext = baseContext;
@@ -105,36 +104,37 @@ namespace Misa.ApplicationCore
             //    serviceResult.MISACode = MisaCode.IsEmpty; // mã lỗi tùy từng trường hợp
             //}
             //    return serviceResult;
-
+            string displayName="";
             try
             {
+                serviceResult.isValid = false;
                 var properties = entity.GetType().GetProperties();
-                var listError = new List<string>();
+              
                 foreach (var property in properties)
                 {
-                    var propertyValue = property.GetValue(entity);
+                    string propertyValue = property.GetValue(entity).ToString();
                     var propertyName = property.Name;
-                    var displayName = property.GetCustomAttributes(typeof(DisplayNameAttribute), true);
-                    //if (property.GetCustomAttribute(typeof(RequiredAttribute),false))
-                    //{
-                        if (propertyValue == null)
+                     displayName= property.GetCustomAttributes(typeof(DisplayNameAttribute), true).Cast<DisplayNameAttribute>().SingleOrDefault().DisplayName;
+                    if (property.IsDefined(typeof(Required), false))
+                    {
+                        if (propertyValue.Length==0)
                         {
                             serviceResult.isValid = false;
                             serviceResult.MISACode = MisaCode.NotValid;
-                            serviceResult.Msg = $"Thông tin {propertyName} không được phép để trống";
+                            serviceResult.Msg = $"Thông tin {displayName} không được phép để trống";
                         listError.Add(serviceResult.Msg);
                         }
-                    //}
-                    //if (property.IsDefined(typeof(CheckDuplicate), false))
-                    //{
-                    var propertyName2 = property.Name;
-                    //var entityDuplicate = _baseContext.GetEntityByProperty();
-                    //if (entityDuplicate != null)
-                    //{
-                       serviceResult.isValid = false;
-                        serviceResult.Msg = Properties.Resources.ErrorMsg_CodeDupplicate;
-                        listError.Add(serviceResult.Msg);
-                        serviceResult.MISACode = MisaCode.NotValid;
+                    }
+                    ////if (property.IsDefined(typeof(CheckDuplicate), false))
+                    ////{
+                    //var propertyName2 = property.Name;
+                    ////var entityDuplicate = _baseContext.GetEntityByProperty();
+                    ////if (entityDuplicate != null)
+                    ////{
+                    //   serviceResult.isValid = false;
+                    //    serviceResult.Msg = Properties.Resources.ErrorMsg_CodeDupplicate;
+                    //    listError.Add(serviceResult.Msg);
+                    //    serviceResult.MISACode = MisaCode.NotValid;
                     //}
 
                     //}
@@ -143,13 +143,11 @@ namespace Misa.ApplicationCore
             }
             catch (Exception ex)
             {
+               
                 serviceResult.Msg = ex.Message;
                 return serviceResult;
 
             }
-        
-
-
 
     }
     protected virtual void ValidateCustomer<MISAEntity>(MISAEntity entity)
@@ -160,40 +158,43 @@ namespace Misa.ApplicationCore
         {
             try
             {
-                //entity.EntityState = EntityState.AddNew;
+                        //entity.EntityState = EntityState.AddNew;
                 serviceResult = ValidateObject<MISAEntity>(entity);
-        ValidateCustomer<MISAEntity>(entity);
-        if (serviceResult.isValid == false)
-        {
-            return serviceResult;
-        }
-        // nếu dữ liệu hợp lệ xong kiểm tra có thêm được hàng nào vào chưa
-        else
-        {
-            var rowAffect = _baseContext.InsertObject<MISAEntity>(entity);
-            if (rowAffect <= 0)
-            {
-                serviceResult.Msg = Properties.Resources.ErrorMsg_NotRecordAddToDB;
-                serviceResult.Data = rowAffect;
-                serviceResult.MISACode = MisaCode.IsValid;
-                serviceResult.isValid = false;
-                return serviceResult;
-            }
-            else
-            {
-                serviceResult.MISACode = MisaCode.Susscess;
-                serviceResult.Data = rowAffect;
-                serviceResult.Msg = Properties.Resources.Susscess;
-                serviceResult.isValid = true;
-                return serviceResult;
-            }
-        }
+                ValidateCustomer<MISAEntity>(entity);
+                if (serviceResult.isValid == false)
+                {
+                    serviceResult.Msg = "Loi khong dung dinh dang";
+                    serviceResult.MISACode = MisaCode.NotValid;
+                    return serviceResult;
+                }
+                // nếu dữ liệu hợp lệ xong kiểm tra có thêm được hàng nào vào chưa
+                else
+                {
+                    var rowAffect = _baseContext.InsertObject<MISAEntity>(entity);
+                    if (rowAffect <= 0)
+                    {
+                        serviceResult.Msg = Properties.Resources.ErrorMsg_NotRecordAddToDB;
+                        serviceResult.Data = rowAffect;
+                        serviceResult.MISACode = MisaCode.IsValid;
+                        serviceResult.isValid = false;
+                        return serviceResult;
+                    }
+                    else
+                    {
+                        serviceResult.MISACode = MisaCode.Susscess;
+                        serviceResult.Data = rowAffect;
+                        serviceResult.Msg = Properties.Resources.Susscess;
+                        serviceResult.isValid = true;
+                        return serviceResult;
+                    }
+                }
 
 
             }
             catch(Exception ex)
             {
                 //var msg = new
+                //{
                 //{
                 //    devMsg = new { fieldName = "customerCode", msg = "Mã khách hàng bị trống" },
                 //    userMsg = "lỗi server",

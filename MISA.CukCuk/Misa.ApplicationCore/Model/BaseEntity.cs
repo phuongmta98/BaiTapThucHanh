@@ -5,7 +5,25 @@ using System.Text;
 
 namespace Misa.ApplicationCore.Model
 {
-   public  class BaseEntity
+
+    /// <summary>
+    /// Đặc điểm bắt buộc
+    /// </summary>
+    public class Required : Attribute
+    {
+
+    }
+    /// <summary>
+    /// Đặc điểm duy nhất
+    /// </summary>
+    public class Unique : Attribute
+    {
+
+    }
+    /// <summary>
+    /// Lớp cơ sở cho các model classes
+    /// </summary>
+    public class BaseEntity
     {
         public EntityState EntityState { get; set; } = EntityState.AddNew;
         /// <summary>

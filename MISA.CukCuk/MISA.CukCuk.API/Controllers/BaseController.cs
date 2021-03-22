@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Misa.ApplicationCore;
+using Misa.ApplicationCore.Entities;
 using Misa.ApplicationCore.Enums;
 using Misa.ApplicationCore.Model;
 using System;
@@ -15,9 +16,11 @@ namespace MISA.CukCuk.API.Controllers
     public class BaseController<MISAEntity> : ControllerBase
     {
         IBaseService _baseService;
+        ServiceResult serviceResult;
         public BaseController(IBaseService baseService)
         {
             this._baseService = baseService;
+            this.serviceResult = new ServiceResult();
         }
         /// <summary>
         /// Lấy thông tin danh sách khách hàng
@@ -101,7 +104,7 @@ namespace MISA.CukCuk.API.Controllers
 
             try
             {
-                var serviceResult = _baseService.UpdateObject<MISAEntity>(entity);
+                serviceResult = _baseService.UpdateObject<MISAEntity>(entity);
 
                 if (serviceResult.MISACode == MisaCode.Susscess)
                 {
